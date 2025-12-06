@@ -1,15 +1,13 @@
 from telegram.ext import ApplicationBuilder, CommandHandler
-import os
-
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+import config
 
 async def start(update, context):
     await update.message.reply_text("Bot sudah aktif!")
 
 def main():
-    app = ApplicationBuilder().token(TOKEN).build()
+    app = ApplicationBuilder().token(config.TELEGRAM_BOT_TOKEN).build()
 
-    # REGISTER COMMANDS YANG VALID
+    # REGISTER COMMAND /start
     app.add_handler(CommandHandler("start", start))
 
     app.run_polling()
